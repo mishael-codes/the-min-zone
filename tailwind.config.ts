@@ -8,12 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
-      colors: {
-        primary: "hsl(218, 100, 61%)",
-        secondary: "hsl(0, 0, 15%)",
-        accent: "hsl(204, 81, 74%)",
-        shadow: "hsl(0, 0, 0%)",
-        misc: "hsl(69, 100, 96%)",
+      backgroundImage: {
+        "gradient":
+          "linear-gradient(204deg, rgba(2,0,36,1) 0%, rgba(255,133,2,1) 30%, rgba(255,133,2,1) 70%, rgba(0,0,0,1) 100%)",
       },
     },
   },
