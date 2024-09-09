@@ -8,9 +8,9 @@ const Button = ({ text, standard }: ButtonProps) => {
     <button
       className={`${
         standard
-          ? "bg-orange-500 shadow-md shadow-orange-950 text-black hover:bg-gradient px-7"
-          : "text-misc bg-transparent"
-      } p-2 rounded-xl font-semibold transition-all`}
+          ? "bg-orange-500 shadow-md shadow-orange-950 text-black hover:bg-gradient"
+          : "text-orange-500 bg-transparent"
+      } rounded-xl font-semibold transition-all px-7 py-2`}
     >
       {text}
     </button>
