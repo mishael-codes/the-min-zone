@@ -1,16 +1,16 @@
 "use client";
 //  Next Imports
 import Link from "next/link";
-import {useRouter} from "next/navigation";
+import { useRouter } from "next/navigation";
 // components
-import Button from "../components/button";
+import Button from "../../components/button";
 
 // framer motion
 import { motion } from "framer-motion";
 
 // firebase imports
 import { signInWithEmailAndPassword } from "firebase/auth";
-import auth from "../../firebase/fire-auth";
+import auth from "../../../firebase/fire-auth";
 // react imports
 import { useState } from "react";
 
@@ -23,19 +23,19 @@ const SignIn = () => {
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setEmail(value);
-  }
+  };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
     setPassword(value);
-  }
+  };
 
   // sign in user
   const signInUser = () => {
     console.log(email, password);
-    
-    if(email && password){
-      alert("Yeet")
+
+    if (email && password) {
+      alert("Yeet");
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
@@ -46,9 +46,9 @@ const SignIn = () => {
           const errorCode = error.code;
           const errorMessage = error.message;
           console.log(errorCode, errorMessage);
-        })
-    }else alert("error")
-  }
+        });
+    } else alert("error");
+  };
 
   return (
     <motion.div

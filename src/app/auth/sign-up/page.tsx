@@ -1,19 +1,19 @@
 "use client";
 //  Next Imports
 import Link from "next/link";
-import {useRouter} from "next/navigation";
-import Button from "../components/button";
+import { useRouter } from "next/navigation";
+import Button from "../../components/button";
 import { motion } from "framer-motion";
 
 // firebase imports
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import auth from "../../firebase/fire-auth";
+import auth from "../../../firebase/fire-auth";
 
 // react imports
 import { useState } from "react";
 const SignUp = () => {
   const router = useRouter();
-  
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -24,10 +24,10 @@ const SignUp = () => {
     let value = e.target.value;
     const emailRegex =
       /^(?:"[a-zA-Z0-9!#$%&'*+/=?^_`{|}~.-]+"|[a-zA-Z0-9._%+-]+)@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-      
+
     if (!emailRegex.test(value)) {
       console.log("Please enter to valid email address");
-    }else if(emailRegex.test(value)){
+    } else if (emailRegex.test(value)) {
       setEmail(value);
     }
   };
@@ -37,19 +37,23 @@ const SignUp = () => {
     let value = e.target.value;
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/;
     if (!passwordRegex.test(value)) {
-      console.log("Password must contain at least one number, one uppercase and lowercase letter, and at least 6 characters");
-    }else if(passwordRegex.test(value)){
+      console.log(
+        "Password must contain at least one number, one uppercase and lowercase letter, and at least 6 characters"
+      );
+    } else if (passwordRegex.test(value)) {
       setPassword(value);
     }
   };
 
   // confirm password
-  const handleConfirmPasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleConfirmPasswordChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     let value = e.target.value;
 
     if (value !== password) {
       console.log("Must be equal to password");
-    }else if(value === password){
+    } else if (value === password) {
       setConfirmPassword(value);
     }
   };
@@ -57,9 +61,9 @@ const SignUp = () => {
   // create a user
   const createUser = () => {
     console.log(email, password, confirmPassword);
-    
-    if(email && password && confirmPassword){
-      alert("Yeet")
+
+    if (email && password && confirmPassword) {
+      alert("Yeet");
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
@@ -70,9 +74,9 @@ const SignUp = () => {
           const errorCode = error.code;
           const errorMessage = error.message;
           console.log(errorCode, errorMessage);
-        })
-    }else alert("error")
-  }
+        });
+    } else alert("error");
+  };
 
   return (
     <motion.div
@@ -89,7 +93,9 @@ const SignUp = () => {
       </Link>
       <div className="flex flex-col items-center justify-start gap-4">
         <h1 className="text-orange-500 text-3xl font-bold">Sign Up</h1>
-        <p className="text-center">Sign up to store your progress and access multiplayer features!</p>
+        <p className="text-center">
+          Sign up to store your progress and access multiplayer features!
+        </p>
       </div>
 
       <form className="flex items-center justify-center flex-col gap-4 w-full px-10">
