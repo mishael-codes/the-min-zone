@@ -3,21 +3,31 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Button from "../../components/button";
+
+// framer motion
 import { motion } from "framer-motion";
+
+// context imports
+import { useAuth } from "@/context/AuthContext";
 
 // firebase imports
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import auth from "../../../firebase/fire-auth";
 
 // react imports
-import { useState } from "react";
+import { useEffect, useState } from "react";
 const SignUp = () => {
   const router = useRouter();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const { user } = useAuth();
 
+  // check if user is logged in
+  useEffect(() => {
+    user ? router.push("/dashboard") : null;
+  });
   // assign the input values to state
   // email
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -145,7 +155,7 @@ const SignUp = () => {
       </form>
       <div className="flex items-center justify-between w-full md:w-1/2 px-10">
         <Button text={"Sign Up"} standard click={createUser} />
-        <Link href="/sign-in">
+        <Link href="sign-in">
           <Button text={"Go to Sign In"} />
         </Link>
       </div>

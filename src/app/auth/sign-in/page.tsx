@@ -11,14 +11,22 @@ import { motion } from "framer-motion";
 // firebase imports
 import { signInWithEmailAndPassword } from "firebase/auth";
 import auth from "../../../firebase/fire-auth";
+import { useAuth } from "@/context/AuthContext";
+
 // react imports
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const SignIn = () => {
   const router = useRouter();
 
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const { user } = useAuth();
+
+  // check if user is logged in
+  useEffect(() => {
+    user ? router.push("/dashboard") : null;
+  });
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -98,7 +106,7 @@ const SignIn = () => {
       </form>
       <div className="flex items-center justify-between w-full md:w-1/2 px-10">
         <Button text={"Sign In"} standard click={signInUser} />
-        <Link href="/sign-up">
+        <Link href="sign-up">
           <Button text={"Go to Sign Up"} />
         </Link>
       </div>
