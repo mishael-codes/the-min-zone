@@ -22,6 +22,7 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [loading, setLoading] = useState(false);
   const { user } = useAuth();
 
   // check if user is logged in
@@ -73,19 +74,20 @@ const SignUp = () => {
     console.log(email, password, confirmPassword);
 
     if (email && password && confirmPassword) {
-      alert("Yeet");
+      setLoading(true)
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log(user);
+          setLoading(false)
           router.push("/dashboard");
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
           console.log(errorCode, errorMessage);
+          setLoading(false)
         });
-    } else alert("error");
+    } else alert("Fill in all the required field");
   };
 
   return (
@@ -154,7 +156,7 @@ const SignUp = () => {
         </label>
       </form>
       <div className="flex items-center justify-between w-full md:w-1/2 px-10">
-        <Button text={"Sign Up"} standard click={createUser} />
+        <Button text={"Sign Up"} click={createUser} load={loading} standard />
         <Link href="sign-in">
           <Button text={"Go to Sign In"} />
         </Link>
