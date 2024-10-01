@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 // components
 import Button from "../../components/button";
-
+import ButtonLoading from "@/app/components/loading/buttonLoading";
 // framer motion
 import { motion } from "framer-motion";
 
@@ -19,6 +19,7 @@ import { useEffect, useState } from "react";
 const SignIn = () => {
   const router = useRouter();
 
+  const [loading, setLoading] = useState(false);
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const { user } = useAuth();
@@ -40,20 +41,21 @@ const SignIn = () => {
 
   // sign in user
   const signInUser = () => {
-    console.log(email, password);
-
     if (email && password) {
-      alert("Yeet");
+      setLoading(true);
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
           const user = userCredential.user;
           console.log(user);
+          setLoading(false);
           router.push("/dashboard");
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          console.log(errorCode, errorMessage);
+          alert(errorCode);
+          alert(errorMessage);
+          setLoading(false)
         });
     } else alert("error");
   };
@@ -105,7 +107,7 @@ const SignIn = () => {
         </label>
       </form>
       <div className="flex items-center justify-between w-full md:w-1/2 px-10">
-        <Button text={"Sign In"} standard click={signInUser} />
+        <Button text={"Sign In"} click={signInUser} load={loading} standard />
         <Link href="sign-up">
           <Button text={"Go to Sign Up"} />
         </Link>
