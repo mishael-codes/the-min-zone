@@ -28,6 +28,15 @@ const NumberGuessing = () => {
     }
   }, [max, min]);
 
+  const checkNumber = () => {
+    const guess = document.querySelector("input") as HTMLInputElement;
+    if (parseInt(guess.value) === randomizedNumber) {
+      alert("You got it right!");
+    } else {
+      alert("Try again");
+    }
+  }
+
   return (
     <div className="flex items-center justify-center max-w-screen min-h-screen">
       <motion.div
@@ -61,7 +70,7 @@ const NumberGuessing = () => {
               type="number"
               className="w-full p-2 border-2 bg-transparent border-orange-500 rounded-lg focus:outline-none focus:border-orange-500 caret-orange-500"
             />
-            <Button text="Guess" standard />
+            <Button text="Guess" click={checkNumber} standard />
           </div>
         </div>
       ) : (
