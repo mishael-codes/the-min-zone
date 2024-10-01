@@ -3,10 +3,12 @@
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import Button from "@/app/components/button";
+import { randomize } from "@/app/functions/number-guessing/randomize";
 const NumberGuessing = () => {
   const [level, setLevel] = useState("");
   const [min] = useState(1);
   const [max, setMax] = useState(0);
+  const [randomizedNumber, setRandomizedNumber] = useState(0);
 
   useEffect(() => {
     if (level === "easy") {
@@ -17,6 +19,14 @@ const NumberGuessing = () => {
       setMax(1000);
     }
   }, [level]);
+
+  useEffect(() => {
+    if (max > 0) {
+      const value = randomize(min, max);
+      setRandomizedNumber(value);
+      console.log(value);
+    }
+  }, [max, min]);
 
   return (
     <div className="flex items-center justify-center max-w-screen min-h-screen">
@@ -49,7 +59,7 @@ const NumberGuessing = () => {
           <div className="flex items-center justify-center flex-col gap-4">
             <input
               type="number"
-              className="w-full p-2 border-2 bg-transparent border-orange-500 rounded-lg"
+              className="w-full p-2 border-2 bg-transparent border-orange-500 rounded-lg focus:outline-none focus:border-orange-500 caret-orange-500"
             />
             <Button text="Guess" standard />
           </div>
