@@ -8,7 +8,13 @@ const NumberGuessing = () => {
   const [level, setLevel] = useState("");
   const [min] = useState(1);
   const [max, setMax] = useState(0);
+  const [guess, setGuess] = useState(0);
+  const [numberOfGuesses, setNumberOfGuesses] = useState(0);
   const [randomizedNumber, setRandomizedNumber] = useState(0);
+  const [numberOfPlays, setNumberOfPlays] = useState(0)
+  const [showOrHide, setShowOrHide] = useState("hidden")
+  const [color, setColor] = useState("");
+  const [feedback, setFeedback] = useState("");
 
   useEffect(() => {
     if (level === "easy") {
@@ -28,14 +34,41 @@ const NumberGuessing = () => {
     }
   }, [max, min]);
 
-  const checkNumber = () => {
-    const guess = document.querySelector("input") as HTMLInputElement;
-    if (parseInt(guess.value) === randomizedNumber) {
-      alert("You got it right!");
+  const chooseNewRandomNumber = () => {
+    const value = randomize(min, max);
+    setRandomizedNumber(value);
+    setColor("");
+    setFeedback("");
+    setNumberOfGuesses(0);
+    setShowOrHide("hidden")
+    setNumberOfPlays(numberOfPlays + 1)
+    console.log(value);
+  };
+
+  const checkForGuess = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setGuess(parseInt(value));
+  };
+
+  const checkIfGuessIsCorrect = () => {
+    if (guess === randomizedNumber) {
+      setFeedback("You got it right!");
+      setColor("text-green-500");
+      setNumberOfGuesses(numberOfGuesses + 1);
+      setShowOrHide("")
+    } else if (
+      guess + 2 === randomizedNumber ||
+      guess + 1 === randomizedNumber ||
+      guess - 2 === randomizedNumber ||
+      guess - 1 === randomizedNumber
+    ) {
+      setFeedback("So close, but not quite");
+      setColor("text-yellow-500");
     } else {
-      alert("Try again");
+      setFeedback("Nope, not this time");
+      setColor("text-red-500");
     }
-  }
+  };
 
   return (
     <div className="flex items-center justify-center max-w-screen min-h-screen">
@@ -65,12 +98,23 @@ const NumberGuessing = () => {
               <span className="text-orange-500">{max}</span>
             </p>
           </div>
+          <p className={`font-semibold ${color}`}>{feedback}</p>
           <div className="flex items-center justify-center flex-col gap-4">
             <input
               type="number"
+              onChange={checkForGuess}
               className="w-full p-2 border-2 bg-transparent border-orange-500 rounded-lg focus:outline-none focus:border-orange-500 caret-orange-500"
             />
-            <Button text="Guess" click={checkNumber} standard />
+            <div className="flex items-center justify-between w-full">
+              <Button text="Guess" click={checkIfGuessIsCorrect} standard />
+              <div className={`${showOrHide}`}>
+                <Button text="Next" click={chooseNewRandomNumber} standard />
+              </div>
+            </div>
+          </div>
+          <div>
+            <p>Number of Guesses: {numberOfGuesses}</p>
+            <p>Number of Plays: {numberOfPlays}</p>
           </div>
         </div>
       ) : (
