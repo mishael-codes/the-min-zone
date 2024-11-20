@@ -27,7 +27,7 @@ const SignUp = () => {
 
   // check if user is logged in
   useEffect(() => {
-    user ? router.push("/dashboard") : null;
+    user ? router.push("/user/dashboard") : null;
   });
   // assign the input values to state
   // email
@@ -79,7 +79,7 @@ const SignUp = () => {
         .then((userCredential) => {
           const user = userCredential.user;
           setLoading(false)
-          router.push("/dashboard");
+          router.push("/user/dashboard");
         })
         .catch((error) => {
           const errorCode = error.code;

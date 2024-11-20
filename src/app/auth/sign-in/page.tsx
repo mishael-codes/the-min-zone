@@ -26,7 +26,7 @@ const SignIn = () => {
 
   // check if user is logged in
   useEffect(() => {
-    user ? router.push("/dashboard") : null;
+    user ? router.push("/user/dashboard") : null;
   });
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,16 +48,15 @@ const SignIn = () => {
           const user = userCredential.user;
           console.log(user);
           setLoading(false);
-          router.push("/dashboard");
+          router.push("/user/dashboard");
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          alert(errorCode);
-          alert(errorMessage);
+          console.error(errorCode, errorMessage);
           setLoading(false)
         });
-    } else alert("error");
+    } else console.log("error");
   };
 
   return (
