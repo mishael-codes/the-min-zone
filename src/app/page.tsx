@@ -2,11 +2,12 @@
 import { TypeAnimation } from "react-type-animation"
 import Button from "./components/button";
 import Nav from "./components/nav";
+import FeaturedGames from "./home-components/featured-games";
 export default function Home() {
   return (
     <>
       <Nav />
-      <main>
+      <header>
         <div className="flex items-center justify-start flex-col gap-6 bg-black text-[#f4f4f4] min-h-screen">
           <h1 className="text-5xl font-bold text-center mt-20">
             Welcome to The Min Zone
@@ -27,6 +28,9 @@ export default function Home() {
           </p>
           <Button standard text="Get started" />
         </div>
+      </header>
+      <main>
+        <FeaturedGames />
       </main>
     </>
   );
