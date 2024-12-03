@@ -39,7 +39,6 @@ const NumberGuessing = () => {
     setRandomizedNumber(value);
     setColor("");
     setFeedback("");
-    setNumberOfGuesses(0);
     setShowOrHide("hidden")
     setNumberOfPlays(numberOfPlays + 1)
     console.log(value);
@@ -54,7 +53,6 @@ const NumberGuessing = () => {
     if (guess === randomizedNumber) {
       setFeedback("You got it right!");
       setColor("text-green-500");
-      setNumberOfGuesses(numberOfGuesses + 1);
       setShowOrHide("")
     } else if (
       guess + 2 === randomizedNumber ||
@@ -68,6 +66,7 @@ const NumberGuessing = () => {
       setFeedback("Nope, not this time");
       setColor("text-red-500");
     }
+    setNumberOfGuesses(numberOfGuesses + 1);
   };
 
   return (
