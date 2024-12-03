@@ -12,8 +12,10 @@ const RockPaperScissor = () => {
   const [computerChoice, setComputerChoice] = useState(
     choices[Math.floor(Math.random() * choices.length)]
   );
-  const [userPoints, setUserPoints] = useState(0)
-  const [computerPoints, setComputerPoints] = useState(0)
+  const [userPoints, setUserPoints] = useState(0);
+  const [computerPoints, setComputerPoints] = useState(0);
+  const [color, setColor] = useState("");
+  const [feedback, setFeedback] = useState("");
 
   const pickYourChampion = (item: string) => {
     // on each click or choice made by user, re-choose the computer's choice
@@ -23,17 +25,20 @@ const RockPaperScissor = () => {
       //rock
       if (computerChoice == choices[1]) {
         // paper
-        alert("You lose");
-        setComputerPoints(computerPoints + 1)
+        setFeedback("You lose");
+        setColor("text-red-500");
+        setComputerPoints(computerPoints + 1);
       } else if (computerChoice == choices[2]) {
         // scissors
-        alert("you win");
-        setUserPoints(userPoints + 1)
+        setFeedback("You win");
+        setColor("text-green-500");
+        setUserPoints(userPoints + 1);
       } else if (computerChoice == choices[0]) {
         // rock
-        alert("draw");
-        setComputerPoints(computerPoints + 0.5)
-        setUserPoints(userPoints + 0.5)
+        setFeedback("It's a draw");
+        setColor("text-yellow-500");
+        setComputerPoints(computerPoints + 0.5);
+        setUserPoints(userPoints + 0.5);
       }
     }
 
@@ -41,17 +46,20 @@ const RockPaperScissor = () => {
       // paper
       if (computerChoice == choices[0]) {
         // rock
-        alert("You win");
-        setUserPoints(userPoints + 1)
+        setFeedback("You win");
+        setColor("text-green-500");
+        setUserPoints(userPoints + 1);
       } else if (computerChoice == choices[2]) {
         // scissors
-        alert("you lose");
-        setComputerPoints(computerPoints + 1)
+        setFeedback("You lose");
+        setColor("text-red-500");
+        setComputerPoints(computerPoints + 1);
       } else if (computerChoice == choices[1]) {
         // paper
-        alert("draw");
-        setComputerPoints(computerPoints + 0.5)
-        setUserPoints(userPoints + 0.5)
+        setFeedback("It's a draw");
+        setColor("text-yellow-500");
+        setComputerPoints(computerPoints + 0.5);
+        setUserPoints(userPoints + 0.5);
       }
     }
 
@@ -59,17 +67,20 @@ const RockPaperScissor = () => {
       // scissors
       if (computerChoice == choices[0]) {
         // rock
-        alert("You lose");
-        setComputerPoints(computerPoints + 1)
+        setFeedback("You lose");
+        setColor("text-red-500");
+        setComputerPoints(computerPoints + 1);
       } else if (computerChoice == choices[1]) {
         // paper
-        alert("you win");
-        setUserPoints(userPoints + 1)
+        setFeedback("You win");
+        setColor("text-green-500");
+        setUserPoints(userPoints + 1);
       } else if (computerChoice == choices[2]) {
         // scissors
-        alert("draw");
-        setComputerPoints(computerPoints + 0.5)
-        setUserPoints(userPoints + 0.5)
+        setFeedback("It's a draw");
+        setColor("text-yellow-500");
+        setComputerPoints(computerPoints + 0.5);
+        setUserPoints(userPoints + 0.5);
       }
     }
 
@@ -83,6 +94,7 @@ const RockPaperScissor = () => {
         <span className="first-letter:text-orange-500">Paper</span>{" "}
         <span className="first-letter:text-orange-500">Scissors</span>
       </h1>
+      <p className={`font-semibold ${color}`}>{feedback}</p>
       <div className="flex flex-col md:flex-row items-center justify-evenly mt-32 w-full transition-all">
         <div
           onClick={() => pickYourChampion("rock")}
@@ -119,4 +131,5 @@ const RockPaperScissor = () => {
     </main>
   );
 };
+
 export default RockPaperScissor;
