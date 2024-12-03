@@ -95,7 +95,7 @@ const RockPaperScissor = () => {
         </div>
         <div
           onClick={() => pickYourChampion("paper")}
-          className=" text-orange-500"
+          className=" text-orange-500 my-36 md:my-0"
         >
           <FontAwesomeIcon
             icon={faHandPaper}
