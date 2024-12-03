@@ -12,6 +12,8 @@ const RockPaperScissor = () => {
   const [computerChoice, setComputerChoice] = useState(
     choices[Math.floor(Math.random() * choices.length)]
   );
+  const [userPoints, setUserPoints] = useState(0)
+  const [computerPoints, setComputerPoints] = useState(0)
 
   const pickYourChampion = (item: string) => {
     // on each click or choice made by user, re-choose the computer's choice
@@ -22,12 +24,16 @@ const RockPaperScissor = () => {
       if (computerChoice == choices[1]) {
         // paper
         alert("You lose");
+        setComputerPoints(computerPoints + 1)
       } else if (computerChoice == choices[2]) {
         // scissors
         alert("you win");
+        setUserPoints(userPoints + 1)
       } else if (computerChoice == choices[0]) {
         // rock
         alert("draw");
+        setComputerPoints(computerPoints + 0.5)
+        setUserPoints(userPoints + 0.5)
       }
     }
 
@@ -36,12 +42,16 @@ const RockPaperScissor = () => {
       if (computerChoice == choices[0]) {
         // rock
         alert("You win");
+        setUserPoints(userPoints + 1)
       } else if (computerChoice == choices[2]) {
         // scissors
         alert("you lose");
+        setComputerPoints(computerPoints + 1)
       } else if (computerChoice == choices[1]) {
         // paper
         alert("draw");
+        setComputerPoints(computerPoints + 0.5)
+        setUserPoints(userPoints + 0.5)
       }
     }
 
@@ -50,12 +60,16 @@ const RockPaperScissor = () => {
       if (computerChoice == choices[0]) {
         // rock
         alert("You lose");
+        setComputerPoints(computerPoints + 1)
       } else if (computerChoice == choices[1]) {
         // paper
         alert("you win");
+        setUserPoints(userPoints + 1)
       } else if (computerChoice == choices[2]) {
         // scissors
         alert("draw");
+        setComputerPoints(computerPoints + 0.5)
+        setUserPoints(userPoints + 0.5)
       }
     }
 
@@ -97,6 +111,10 @@ const RockPaperScissor = () => {
             className="p-5 scale-[3] border-2 border-gray-600 border-dashed rounded-full cursor-pointer hover:border-orange-500"
           />
         </div>
+      </div>
+      <div className="mt-32">
+        <p>You: {userPoints}</p>
+        <p>Computer: {computerPoints}</p>
       </div>
     </main>
   );
