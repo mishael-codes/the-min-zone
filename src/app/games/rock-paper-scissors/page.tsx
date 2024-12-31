@@ -152,13 +152,13 @@ const RockPaperScissor = () => {
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.5 }}
-        className={`flex items-center justify-center flex-col bg-black text-[#f4f4f4] gap-7 p-12 rounded-lg shadow-lg shadow-orange-400 border-2 border-orange-500 ${
+        className={`w-fit flex items-center justify-center flex-col bg-black text-[#f4f4f4] gap-7 p-12 rounded-lg shadow-lg shadow-orange-400 border-2 border-orange-500 ${
           level ? `hidden` : `flex`
         }`}
       >
         <Button text="Rounds of 3" click={() => setLevel(3)} standard />
         <Button text="Rounds of 5" click={() => setLevel(5)} standard />
-        <div className="flex items-center justify-center">
+        <div className="flex flex-col-reverse md:flex-row gap-4 items-center justify-center">
           <Button
             text="Set"
             click={() => {
