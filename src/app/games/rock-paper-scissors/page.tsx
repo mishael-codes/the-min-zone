@@ -39,12 +39,9 @@ const RockPaperScissor = () => {
   }, [level, customLevel]);
 
   useEffect(() => {
-    // set max level (3, 5 or custom)
-    if (max === 3 || max === 5 || (customLevel && max === customLevel)) {
-      if (
-        userPoints + computerPoints === max ||
-        userPoints + computerPoints === customLevel
-      ) {
+    // max level is 3
+    if (max === 3 || max === 5) {
+      if (userPoints + computerPoints === max) {
         if (userPoints > computerPoints) {
           setModalText("You win");
           setColor("text-green-500");
@@ -54,6 +51,19 @@ const RockPaperScissor = () => {
         } else if (userPoints === computerPoints) {
           setModalText("It's a draw");
           setColor("text-yellow-500");
+        }
+        setModal(true);
+      }
+    }
+    // max level is custom
+    if (customLevel && max === customLevel) {
+      if (userPoints + computerPoints === customLevel) {
+        if (userPoints > computerPoints) {
+          setModalText("You win");
+        } else if (userPoints < computerPoints) {
+          setModalText("You lose");
+        } else if (userPoints === computerPoints) {
+          setModalText("It's a draw");
         }
         setModal(true);
       }
@@ -145,9 +155,19 @@ const RockPaperScissor = () => {
           modal ? "flex" : "hidden"
         } items-center justify-center flex-col gap-8 p-9 bg-black border-2 border-dashed border-gray-600 w-1/3`}
       >
-        <p className={`font-semibold ${color}`} >{modalText}</p>
+        <p className={`font-semibold ${color}`}>{modalText}</p>
         <div className="gap-10 w-full flex items-center justify-around">
-          <Button text={`Restart`} standard></Button>
+          <Button
+            text={`Restart`}
+            standard
+            click={() => {
+              setLevel(0);
+              setUserPoints(0);
+              setComputerPoints(0);
+              setFeedback("");
+              setModal(false);
+            }}
+          ></Button>
           <Button text={`Home`}></Button>
         </div>
       </motion.div>
