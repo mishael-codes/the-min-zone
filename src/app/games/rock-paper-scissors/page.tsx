@@ -1,7 +1,11 @@
 "use client";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHandRock } from "@fortawesome/free-solid-svg-icons";
+import {
+  faHandRock,
+  faHome,
+  faRefresh,
+} from "@fortawesome/free-solid-svg-icons";
 import { faHandScissors } from "@fortawesome/free-solid-svg-icons";
 import { faHandPaper } from "@fortawesome/free-solid-svg-icons";
 
@@ -21,6 +25,8 @@ const RockPaperScissor = () => {
   const [level, setLevel] = useState(0);
   const [customLevel, setCustomLevel] = useState(0);
   const [max, setMax] = useState(0);
+  const [modalText, setModalText] = useState("");
+  const [modal, setModal] = useState(false);
 
   useEffect(() => {
     if (level === 3) {
@@ -33,40 +39,23 @@ const RockPaperScissor = () => {
   }, [level, customLevel]);
 
   useEffect(() => {
-    // max level is 3
-    if (max === 3) {
-      if (userPoints + computerPoints === max) {
+    // set max level (3, 5 or custom)
+    if (max === 3 || max === 5 || (customLevel && max === customLevel)) {
+      if (
+        userPoints + computerPoints === max ||
+        userPoints + computerPoints === customLevel
+      ) {
         if (userPoints > computerPoints) {
-          alert("You win");
+          setModalText("You win");
+          setColor("text-green-500");
         } else if (userPoints < computerPoints) {
-          alert("You lose");
+          setModalText("You lose");
+          setColor("text-red-500");
         } else if (userPoints === computerPoints) {
-          alert("It's a draw");
+          setModalText("It's a draw");
+          setColor("text-yellow-500");
         }
-      }
-    }
-    // max level is 5
-    if (max === 5) {
-      if (userPoints + computerPoints === max) {
-        if (userPoints > computerPoints) {
-          alert("You win");
-        } else if (userPoints < computerPoints) {
-          alert("You lose");
-        } else if (userPoints === computerPoints) {
-          alert("It's a draw");
-        }
-      }
-    }
-    // max level is custom
-    if (customLevel && max === customLevel) {
-      if (userPoints + computerPoints === customLevel) {
-        if (userPoints > computerPoints) {
-          alert("You win");
-        } else if (userPoints < computerPoints) {
-          alert("You lose");
-        } else if (userPoints === computerPoints) {
-          alert("It's a draw");
-        }
+        setModal(true);
       }
     }
   }, [computerPoints, customLevel, max, userPoints]);
@@ -147,7 +136,21 @@ const RockPaperScissor = () => {
   };
 
   return (
-    <main className="flex flex-col items-center justify-between py-20">
+    <main className="relative flex flex-col items-center justify-between py-20">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+        className={`absolute top-1/3 z-50 ${
+          modal ? "flex" : "hidden"
+        } items-center justify-center flex-col gap-8 p-9 bg-black border-2 border-dashed border-gray-600 w-1/3`}
+      >
+        <p className={`font-semibold ${color}`} >{modalText}</p>
+        <div className="gap-10 w-full flex items-center justify-around">
+          <Button text={`Restart`} standard></Button>
+          <Button text={`Home`}></Button>
+        </div>
+      </motion.div>
       <motion.div
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
