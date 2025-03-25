@@ -1,0 +1,32 @@
+[
+  {
+    "Food": {
+      "Q1": "Would you rather eat an uncooked fish or eat an uncooked beef?",
+      "Q2": "Would you rather only cook tasty meals for the rest of your life or only order mid meals?",
+      "Q3": "Would you rather be a chef or be a baker?",
+      "Q4": "Would you rather be a chef or be a mixologist?",
+      "Q5": "Would you rather try an appealing dish from a no-name chef or an unappetizing dish from well-renowned chef?"
+    },
+    "Superhero": {
+      "Q6": "Would you rather be anywhere in the dc universe or anywhere in the Marvel universe?",
+      "Q7": "Would you rather have super strength or super intelligence?",
+      "Q8": "Would you rather have superpowers or super gadgets?",
+      "Q9": "Would you rather be be able to travel through time or be able to pause time?",
+      "Q10": "Would you rather be be able to fly at 100mph or run at 300mph?"
+    },
+    "Career": {
+      "Q11": "Would you rather inherit a milion dollar businessor build a multi-million dollar business fron scratch?",
+      "Q12": "Would you rather work 9-5 for $250k/year or work at your own pace at $100k/year?",
+      "Q13": "Would you rather be paid bi-weekly or monthly?",
+      "Q14": "Would you rather earn $300k at a big company but you have no time for yourself or $100k at a medium company with lots of personal time?",
+      "Q15": "Would you rather know the CEO of a company or know the hiring manager of a company?"
+    },
+    "Animals": {
+      "Q16": "Would you rather be a land animal or a sea animal?",
+      "Q17": "Would you rather be a tiger or a lion?",
+      "Q18": "Would you rather be an orca or a shark?",
+      "Q19": "Would you rather be chased by a kangaroo or a cheetah?",
+      "Q20": "Would you rather have a pet dog or a pet cat?"
+    }
+  }
+]

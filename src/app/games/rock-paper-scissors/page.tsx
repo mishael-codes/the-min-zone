@@ -12,19 +12,23 @@ import { faHandPaper } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
 import Button from "@/app/components/button";
 import { motion } from "framer-motion";
+
+const zero = () => {
+  return 0
+}
 const RockPaperScissor = () => {
   const choices = ["rock", "paper", "scissors"];
   // randomize the computer's choice from the start
   const [computerChoice, setComputerChoice] = useState(
     choices[Math.floor(Math.random() * choices.length)]
   );
-  const [userPoints, setUserPoints] = useState(0);
-  const [computerPoints, setComputerPoints] = useState(0);
+  const [userPoints, setUserPoints] = useState(() => zero());
+  const [computerPoints, setComputerPoints] = useState(() => zero());
   const [color, setColor] = useState("");
   const [feedback, setFeedback] = useState("");
-  const [level, setLevel] = useState(0);
-  const [customLevel, setCustomLevel] = useState(0);
-  const [max, setMax] = useState(0);
+  const [level, setLevel] = useState(() => zero());
+  const [customLevel, setCustomLevel] = useState(() => zero());
+  const [max, setMax] = useState(() => zero());
   const [modalText, setModalText] = useState("");
   const [modal, setModal] = useState(false);
 
@@ -85,18 +89,18 @@ const RockPaperScissor = () => {
         // paper
         setFeedback("You lose");
         setColor("text-red-500");
-        setComputerPoints(computerPoints + 1);
+        setComputerPoints((prevComputerPoints) => prevComputerPoints + 1);
       } else if (computerChoice == choices[2]) {
         // scissors
         setFeedback("You win");
         setColor("text-green-500");
-        setUserPoints(userPoints + 1);
+        setUserPoints((prevUserPoints) => prevUserPoints + 1);
       } else if (computerChoice == choices[0]) {
         // rock
         setFeedback("It's a draw");
         setColor("text-yellow-500");
-        setComputerPoints(computerPoints + 0.5);
-        setUserPoints(userPoints + 0.5);
+        setComputerPoints((prevComputerPoints) => prevComputerPoints + 0.5);
+        setUserPoints((prevUserPoints) => prevUserPoints + 0.5);
       }
     }
 
@@ -106,18 +110,18 @@ const RockPaperScissor = () => {
         // rock
         setFeedback("You win");
         setColor("text-green-500");
-        setUserPoints(userPoints + 1);
+        setUserPoints((prevUserPoints) => prevUserPoints + 1);
       } else if (computerChoice == choices[2]) {
         // scissors
         setFeedback("You lose");
         setColor("text-red-500");
-        setComputerPoints(computerPoints + 1);
+        setComputerPoints((prevComputerPoints) => prevComputerPoints + 1);
       } else if (computerChoice == choices[1]) {
         // paper
         setFeedback("It's a draw");
         setColor("text-yellow-500");
-        setComputerPoints(computerPoints + 0.5);
-        setUserPoints(userPoints + 0.5);
+        setComputerPoints((prevComputerPoints) => prevComputerPoints + 0.5);
+        setUserPoints((prevUserPoints) => prevUserPoints + 0.5);
       }
     }
 
@@ -127,18 +131,18 @@ const RockPaperScissor = () => {
         // rock
         setFeedback("You lose");
         setColor("text-red-500");
-        setComputerPoints(computerPoints + 1);
+        setComputerPoints((prevComputerPoints) => prevComputerPoints + 1);
       } else if (computerChoice == choices[1]) {
         // paper
         setFeedback("You win");
         setColor("text-green-500");
-        setUserPoints(userPoints + 1);
+        setUserPoints((prevUserPoints) => prevUserPoints + 1);
       } else if (computerChoice == choices[2]) {
         // scissors
         setFeedback("It's a draw");
         setColor("text-yellow-500");
-        setComputerPoints(computerPoints + 0.5);
-        setUserPoints(userPoints + 0.5);
+        setComputerPoints((prevComputerPoints) => prevComputerPoints + 0.5);
+        setUserPoints((prevUserPoints) => prevUserPoints + 0.5);
       }
     }
 
