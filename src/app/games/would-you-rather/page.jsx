@@ -52,7 +52,7 @@ const WouldYouRather = () => {
         >
           <h1 className="text-4xl font-bold">Select a category</h1>
           <p className="text-xl">Choose a category to start playing</p>
-          <div className="grid grid-cols-3 h-fit w-fit p-20 items-center justify-center gap-5">
+          <div className="flex flex-col md:grid md:grid-cols-3 h-fit w-fit p-20 items-center justify-center gap-5">
             {categories.map((categoryName, index) => (
               <p
                 key={index}
