@@ -38,7 +38,7 @@ const WouldYouRather = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen w-screen">
+    <div className="flex flex-col items-center justify-center w-screen">
       <div className="absolute left-10 lg:left-24 top-5 lg:top-16">
         <BackButton />
       </div>
@@ -48,11 +48,11 @@ const WouldYouRather = () => {
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="w-fit flex items-center justify-center flex-col bg-black text-[#f4f4f4] gap-7 p-12 rounded-lg shadow-lg shadow-orange-400 border-2 border-orange-500"
+          className="w-fit flex items-center justify-center flex-col bg-black text-[#f4f4f4] gap-7 md:mt-24 mt-5 p-12 md:rounded-lg md:shadow-lg md:shadow-orange-400 md:border-2 md:border-orange-500"
         >
           <h1 className="text-4xl font-bold">Select a category</h1>
           <p className="text-xl">Choose a category to start playing</p>
-          <div className="flex flex-col md:grid md:grid-cols-3 h-fit w-fit p-20 items-center justify-center gap-5">
+          <div className="grid grid-cols-2 md:grid-cols-3 h-fit md:p-20 gap-5">
             {categories.map((categoryName, index) => (
               <p
                 key={index}
@@ -70,7 +70,7 @@ const WouldYouRather = () => {
           initial={{ opacity: 0, scale: 0.5 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="max-w-screen-sm flex items-center justify-center flex-col bg-black text-[#f4f4f4] gap-7 p-12 rounded-lg shadow-lg shadow-orange-400 border-2 border-orange-500"
+          className="max-w-screen-sm mt-24 mx-2 flex items-center justify-center flex-col bg-black text-[#f4f4f4] gap-7 p-12 rounded-lg shadow-lg shadow-orange-400 border-2 border-orange-500"
         >
           <h2 className="text-2xl font-bold">Category: {category}</h2>
           <p className="text-xl text-center">{question}</p>

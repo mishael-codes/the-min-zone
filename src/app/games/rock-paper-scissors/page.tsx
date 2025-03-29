@@ -157,7 +157,7 @@ const RockPaperScissor = () => {
         transition={{ duration: 0.5 }}
         className={`absolute top-1/3 z-50 ${
           modal ? "flex" : "hidden"
-        } items-center justify-center flex-col gap-8 p-9 bg-black border-2 border-dashed border-gray-600 w-1/3`}
+        } items-center justify-center flex-col gap-8 p-9 bg-black border-2 border-dashed border-gray-600 md:w-1/3`}
       >
         <p className={`font-semibold ${color}`}>{modalText}</p>
         <div className="gap-10 w-full flex items-center justify-around">
@@ -217,23 +217,23 @@ const RockPaperScissor = () => {
             <span className="first-letter:text-orange-500">Scissors</span>
           </h1>
           <p className={`font-semibold ${color}`}>{feedback}</p>
-          <div className="flex flex-col md:flex-row items-center justify-evenly mt-32 w-full transition-all">
+          <div className="flex items-center justify-evenly mt-20 md:mt-32 w-full transition-all">
             <div
               onClick={() => pickYourChampion("rock")}
               className=" text-orange-500"
             >
               <FontAwesomeIcon
                 icon={faHandRock}
-                className="p-5 scale-[3] border-2 border-gray-600 border-dashed rounded-full cursor-pointer hover:border-orange-500"
+                className="p-5 scale-[1.5] md:scale-[3] border-2 border-gray-600 border-dashed rounded-full cursor-pointer hover:border-orange-500"
               />
             </div>
             <div
               onClick={() => pickYourChampion("paper")}
-              className=" text-orange-500 my-36 md:my-0"
+              className=" text-orange-500 md:my-0"
             >
               <FontAwesomeIcon
                 icon={faHandPaper}
-                className="p-5 scale-[3] border-2 border-gray-600 border-dashed rounded-full cursor-pointer hover:border-orange-500"
+                className="p-5 scale-[1.5] md:scale-[3] border-2 border-gray-600 border-dashed rounded-full cursor-pointer hover:border-orange-500"
               />
             </div>
             <div
@@ -242,7 +242,7 @@ const RockPaperScissor = () => {
             >
               <FontAwesomeIcon
                 icon={faHandScissors}
-                className="p-5 scale-[3] border-2 border-gray-600 border-dashed rounded-full cursor-pointer hover:border-orange-500"
+                className="p-5 scale-[1.5] md:scale-[3] border-2 border-gray-600 border-dashed rounded-full cursor-pointer hover:border-orange-500"
               />
             </div>
           </div>
