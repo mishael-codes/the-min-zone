@@ -1,21 +1,18 @@
 "use client";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faHandRock,
-  faHome,
-  faRefresh,
-} from "@fortawesome/free-solid-svg-icons";
+import { faHandRock } from "@fortawesome/free-solid-svg-icons";
 import { faHandScissors } from "@fortawesome/free-solid-svg-icons";
 import { faHandPaper } from "@fortawesome/free-solid-svg-icons";
 
 import { useState, useEffect } from "react";
 import Button from "@/app/components/button";
 import { motion } from "framer-motion";
+import BackButton from "@/app/components/backButton";
 
 const zero = () => {
-  return 0
-}
+  return 0;
+};
 const RockPaperScissor = () => {
   const choices = ["rock", "paper", "scissors"];
   // randomize the computer's choice from the start
@@ -151,6 +148,9 @@ const RockPaperScissor = () => {
 
   return (
     <main className="relative flex flex-col items-center justify-between py-20">
+      <div className="absolute left-10 lg:left-24 top-5 lg:top-16">
+        <BackButton />
+      </div>
       <motion.div
         initial={{ opacity: 0, scale: 0.5 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -165,14 +165,22 @@ const RockPaperScissor = () => {
             text={`Restart`}
             standard
             click={() => {
+              setModal(false);
+              setFeedback("");
+              setUserPoints(0);
+              setComputerPoints(0);
+            }}
+          ></Button>
+          <Button
+            text={`Choose round`}
+            click={() => {
               setLevel(0);
               setUserPoints(0);
               setComputerPoints(0);
               setFeedback("");
               setModal(false);
             }}
-          ></Button>
-          <Button text={`Home`}></Button>
+          />
         </div>
       </motion.div>
       <motion.div

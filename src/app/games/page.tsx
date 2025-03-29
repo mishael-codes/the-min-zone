@@ -6,7 +6,7 @@ import rockPaperScissor from "../../../public/assets/img/rock paper scissors.png
 import wouldYouRather from "../../../public/assets/img/would you rather.png"
 import Link from "next/link"
 import Nav from "../components/nav"
-const FeaturedGames = () => {
+const Games = () => {
   const games = [
     {
       name: "Guess the number",
@@ -52,4 +52,4 @@ const FeaturedGames = () => {
   );
 
 }
-export default FeaturedGames
+export default Games

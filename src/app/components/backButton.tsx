@@ -10,7 +10,7 @@ const BackButton = () => {
 
   return(
     <>
-      <FontAwesomeIcon icon={faCircleChevronLeft} size="2x" color="#f97316" onClick={handleClick} />
+      <FontAwesomeIcon icon={faCircleChevronLeft} size="2x" color="#f97316" onClick={handleClick} className="cursor-pointer" />
     </>
   )
 } 
