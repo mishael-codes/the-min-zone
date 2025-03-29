@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import Button from "@/app/components/button";
 import { randomize } from "@/app/functions/number-guessing/randomize";
+import BackButton from "@/app/components/backButton";
 const NumberGuessing = () => {
   const [level, setLevel] = useState("");
   const [min] = useState(1);
@@ -62,6 +63,9 @@ const NumberGuessing = () => {
     ) {
       setFeedback("So close, but not quite");
       setColor("text-yellow-500");
+    } else if(guess > max){
+      setFeedback("Guess is higher than the specified range")
+      setColor("text-yellow-500")
     } else {
       setFeedback("Nope, not this time");
       setColor("text-red-500");
@@ -85,6 +89,9 @@ const NumberGuessing = () => {
       </motion.div>
       {level ? (
         <div className="flex items-center justify-start flex-col min-h-screen gap-14 py-20">
+          <div className="absolute left-10 lg:left-24 top-5 lg:top-16">
+            <BackButton />
+          </div>
           <div className="text-center flex items-center justify-center flex-col gap-5">
             <h1 className="flex items-start justify-center flex-col w-fit font-semibold text-3xl">
               <span className="first-letter:text-orange-500">Guess</span>{" "}
@@ -104,7 +111,7 @@ const NumberGuessing = () => {
               onChange={checkForGuess}
               className="w-full p-2 border-2 bg-transparent border-orange-500 rounded-lg focus:outline-none focus:border-orange-500 caret-orange-500"
             />
-            <div className="flex items-center justify-between w-full">
+            <div className="flex items-center justify-between flex-col gap-5 w-full">
               <Button text="Guess" click={checkIfGuessIsCorrect} standard />
               <div className={`${showOrHide}`}>
                 <Button text="Next" click={chooseNewRandomNumber} standard />
@@ -115,6 +122,16 @@ const NumberGuessing = () => {
             <p>Number of Guesses: {numberOfGuesses}</p>
             <p>Number of Plays: {numberOfPlays}</p>
           </div>
+          <Button
+            text="Levels"
+            click={() => {
+              setLevel("");
+              setNumberOfGuesses(0);
+              setNumberOfPlays(0);
+              setFeedback("");
+              setColor("");
+            }}
+          />
         </div>
       ) : (
         ""

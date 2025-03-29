@@ -25,7 +25,7 @@ export default function Home() {
           minigames! Challenge friends, track your progress, and discover hidden
           gems. 🎮
         </p>
-        <Link href="/src/app/games">
+        <Link href="/games">
           <Button standard text="Get started" />
         </Link>
       </div>
